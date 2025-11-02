@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Our Journey</title>
+<style>
+ body{background:#f7efe5; font-family: 'Georgia', serif; margin:0; padding:0; color:#4a3a33;}
+ .page{max-width:800px;margin:2rem auto;padding:2rem;background:#fff8f1;
+       border:2px solid #e2d2c3;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.08);}
+ h1{text-align:center;font-size:2.4rem;margin-bottom:1rem;}
+ .section{margin-top:2rem;}
+ .photo-box{width:100%;height:240px;background:#ddd url() center/cover no-repeat;
+            border:2px dashed #c4b3a6;border-radius:10px;display:flex;
+            align-items:center;justify-content:center;color:#7a6b62;font-style:italic;}
+ .editable[contenteditable]{border:1px dashed #ccb9ad;padding:.8rem;border-radius:8px;min-height:1.2rem;}
+ button{background:#b2846f;color:white;border:none;padding:.7rem 1.4rem;border-radius:8px;
+        margin-top:1.4rem;font-size:1rem;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="page">
+ <h1 contenteditable class="editable">Our Journey</h1>
+
+ <div class="section">
+  <h3>How it Began</h3>
+  <div contenteditable class="editable">
+   Write about the first moments, the spark, the story of how you met...
+  </div>
+ </div>
+
+ <div class="section">
+  <h3>Memories</h3>
+  <div class="photo-box" contenteditable>
+   Click and paste an image URL here or type a memory caption
+  </div>
+  <div contenteditable class="editable" style="margin-top:1rem;">
+   Describe the memory here...
+  </div>
+ </div>
+
+ <div class="section">
+  <h3>What You Mean to Me</h3>
+  <div contenteditable class="editable">
+   A space for feelings, gratitude, admiration...
+  </div>
+ </div>
+
+ <button id="saveBtn">Download Edited Page</button>
+</div>
+
+<script>
+document.getElementById('saveBtn').addEventListener('click', function(){
+  const doc = document.documentElement.outerHTML;
+  const blob = new Blob([doc], {type: 'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'our_journey.html';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
